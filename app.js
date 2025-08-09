@@ -1,43 +1,70 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 
-// Obtenemos el control del título y subtítulo de la portada
-function asignarTextoElemento(elemento, texto){     // Función para cambiar el texto de un elemento HTML
-    let elementoHTML = document.querySelector(elemento); // Selecciona el elemento con la etiqueta indicada (ej. 'h1', 'h2')
-    elementoHTML.innerHTML = texto;      // Asigna el nuevo texto al elemento
+// Cambia el texto de un elemento HTML según el selector
+function asignarTextoElemento(elemento, texto) {
+    let elementoHTML = document.querySelector(elemento); // Busca el elemento (ej. 'h1', 'h2', '#id')
+    elementoHTML.innerHTML = texto; // Cambia el contenido por el nuevo texto
 }
 
-asignarTextoElemento('h1', "Amigo Secreto de Edderson");  // Cambia el texto del título principal
-asignarTextoElemento("h2", "Digite el nombre de sus amigos"); // Cambia el texto del subtítulo
+// Título y subtítulo iniciales
+asignarTextoElemento('h1', "Amigo Secreto");
+asignarTextoElemento("h2", "Digite el nombre de sus amigos");
 
-// Agregamos los amigos y realizamos la validación del dato ingresado, evitar nulls
-let amigos = [];  // Inicializamos el arreglo donde se guardarán los amigos
+// Lista de amigos
+let amigos = [];
 
-function agregarAmigo(){
-    let nuevoAmigo = document.getElementById('amigo').value;  // Tomamos el valor ingresado en el input con id 'amigo'
+// Agrega un amigo si el nombre ingresado es válido
+function agregarAmigo() {
+    let nuevoAmigo = document.getElementById('amigo').value; // Captura el texto del input
 
-    if (nuevoAmigo === '' || nuevoAmigo === null){    // Validamos que no esté vacío ni nulo
-        alert("Por favor ingrese un nombre valido");  // Mostramos alerta si es inválido
+    if (!nuevoAmigo) { // Verifica que no esté vacío ni nulo
+        alert("Por favor ingrese un nombre válido");
     } else {
-        amigos.push(nuevoAmigo);     // Agregamos el nuevo amigo a la lista
-        limpiarCaja();               // Limpiamos el campo de entrada
-        mostrarLista();              // Mostramos la lista actualizada en pantalla
-    }
-
-    return;   // Termina la función
-}
-
-function mostrarLista(){
-    let listaHTML = document.getElementById('listaAmigos'); // Obtenemos el elemento donde se mostrará la lista por su id
-    listaHTML.innerHTML = '';     // Limpiamos el contenido actual del elemento
-
-    for (let i = 0; i < amigos.length; i++) {  // Recorremos el arreglo de amigos
-        let elementoLista = document.createElement('li');    // Creamos un nuevo elemento <li>
-        elementoLista.textContent = amigos[i];     // Asignamos el nombre del amigo al <li>
-        listaHTML.appendChild(elementoLista);      // Agregamos el <li> a la lista en el DOM
+        amigos.push(nuevoAmigo); // Añade el nombre al array
+        limpiarCaja(); // Limpia el campo de entrada
+        mostrarLista(); // Actualiza la lista en pantalla
     }
 }
 
-function limpiarCaja (){
-    let valorCaja = document.querySelector('#amigo');   // Seleccionamos el input por id
-    valorCaja.value = "";   // Limpiamos el valor del input
+// Muestra la lista de amigos en pantalla
+function mostrarLista() {
+    let listaHTML = document.getElementById('listaAmigos'); // Contenedor de la lista
+    listaHTML.innerHTML = ''; // Limpia contenido previo
+
+    for (let i = 0; i < amigos.length; i++) {
+        let elementoLista = document.createElement('li'); // Crea un <li>
+        elementoLista.textContent = amigos[i]; // Asigna el nombre
+        listaHTML.appendChild(elementoLista); // Lo agrega al HTML
+    }
 }
+
+// Limpia el campo de entrada
+function limpiarCaja() {
+    document.querySelector('#amigo').value = "";
+}
+
+// Sortea un amigo aleatorio y lo muestra
+function sortearAmigo() {
+    if (amigos.length === 0) {
+        alert("Agrega al menos un nombre antes de sortear.");
+        return;
+    }
+
+    let indiceAmigoAleatorio = Math.floor(Math.random() * amigos.length); // Índice aleatorio
+    let amigoSecreto = amigos[indiceAmigoAleatorio]; // Nombre según posición
+    mostrarAmigo(amigoSecreto);
+    reiniciarJuego();
+}
+
+// Muestra el amigo secreto sorteado
+function mostrarAmigo(amigo) {
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `Tu amigo secreto es: <strong>${amigo}</strong>`;
+}
+
+// Reinicia el juego limpiando la lista y el resultado
+function reiniciarJuego() {
+    amigos = [];
+    mostrarLista();
+}
+
