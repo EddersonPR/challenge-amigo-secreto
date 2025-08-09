@@ -46,11 +46,9 @@ Es ideal para juegos, actividades en equipo o celebraciones, evitando repeticion
 
 ---
 
-## 📸 Capturas de pantalla
-_Añade aquí imágenes o GIFs mostrando el funcionamiento de la aplicación._  
+## 📸 Capturas de pantalla  
 Ejemplo:  
-![Captura 1](./img/captura1.png)  
-![Captura 2](./img/captura2.gif)
+![Gifs](https://github.com/EddersonPR/challenge-amigo-secreto/blob/main/assets/amigo-secreto-video.gif?raw=true)
 
 ---
 
