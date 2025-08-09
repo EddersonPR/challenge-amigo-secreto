@@ -69,7 +69,7 @@ Ejemplo:
 
 ### 1️⃣ Clonar el repositorio
 Usando Git Bash, escribe:
-git clone https://github.com/EddersonPR/challenge-amigo-secreto.git
+`git clone https://github.com/EddersonPR/challenge-amigo-secreto.git`
 
 ### 2️⃣ Descargar desde GitHub
 - Enlace: [Repositorio](https://github.com/EddersonPR/challenge-amigo-secreto)
