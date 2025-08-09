@@ -15,16 +15,28 @@ let amigos = [];
 
 // Agrega un amigo si el nombre ingresado es válido
 function agregarAmigo() {
-    let nuevoAmigo = document.getElementById('amigo').value; // Captura el texto del input
+    let nuevoAmigo = document.getElementById('amigo').value.trim(); // Captura el texto del input y quita espacios al inicio/fin
+    
+    // Expresión regular: solo letras (incluyendo acentos y ñ) y espacios intermedios
+    let regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
 
-    if (!nuevoAmigo) { // Verifica que no esté vacío ni nulo
-        alert("Por favor ingrese un nombre válido");
-    } else {
-        amigos.push(nuevoAmigo); // Añade el nombre al array
-        limpiarCaja(); // Limpia el campo de entrada
-        mostrarLista(); // Actualiza la lista en pantalla
+    // Validación
+    if (!regexNombre.test(nuevoAmigo) || nuevoAmigo === '') {
+        alert("Por favor ingrese un nombre válido (solo letras y espacios).");
+        return; // Sale de la función si es inválido
     }
+
+    // Validar duplicados (sin distinguir mayúsculas/minúsculas)
+    if (amigos.some(nombre => nombre.toLowerCase() === nuevoAmigo.toLowerCase())) {
+        alert(`El nombre "${nuevoAmigo}" ya fue introducido.`);
+        return;
+    }
+
+    amigos.push(nuevoAmigo); // Añade el nombre al array
+    limpiarCaja(); // Limpia el campo de entrada
+    mostrarLista(); // Actualiza la lista en pantalla
 }
+
 
 // Muestra la lista de amigos en pantalla
 function mostrarLista() {
