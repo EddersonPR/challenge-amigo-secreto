@@ -73,8 +73,8 @@ Usando Git Bash, escribe:
 git clone https://github.com/EddersonPR/challenge-amigo-secreto.git
 
 ### 2️⃣ Descargar desde GitHub
-- Enlace: Repositorio GitHub
-- Haz clic en CODE → Download ZIP
+- Enlace: [Repositorio](https://github.com/EddersonPR/challenge-amigo-secreto)
+- Haz clic en **CODE** → **Download ZIP**
 
 ## 3️⃣ Abrir el juego localmente
 - Abre el archivo index.html con tu navegador.
